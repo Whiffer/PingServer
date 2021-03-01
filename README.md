@@ -234,22 +234,26 @@ Configure the PingServer to autostart at boot time, then compile the Swift proje
 After opening a terminal window, follow these steps to install and configure the HTTP server:
 ```
 > sudo apt install nginx
+> (need to reply 'y' once)
 > sudo cp /home/pi/PingServer/nginx/nginx.conf /etc/nginx/
+> sudo /etc/init.d/nginx reload
 > sudo /etc/init.d/nginx start
 ```
+
+##### Local Test
+
+- Click the **Web Browser** button at the top left of the screen
+- After the web browser starts, navigate to **localhost**
+
+##### Remote Test 
+
+- Click the **Open Applications Menu** button at the top left of the screen
+- Click **Shutdown** then select **Reboot**
+- Open a Web Browser on a computer on the same LAN and 
+then navigate to **raspberrypi.local**.
+
 ----
 ## Operating the Ping Server
-
-##### Starting the Ping Server
-
-These are the steps to get started:
-```
-> cd PingServer
-> swift run
-```
-##### Viewing the Ping Server Status
-- Open a web browser on the local network
-- Navigate to **raspberrypi.local**
 
 ##### Stoping the Ping Server
 To stop the Ping Server, open a terminal, find the number for the 
@@ -262,9 +266,19 @@ PingServer process, then issue a kill command for that process.
 To update the PingServer from GitHub:
 ```
 > cd PingServer
-> git fetch https://github.com/Whiffer/PingServer
+> git pull https://github.com/Whiffer/PingServer
 > swift run
 ```
+##### Starting the Ping Server
+These are the steps to get started:
+```
+> cd PingServer
+> swift run
+```
+##### Viewing the Ping Server Status
+- Open a web browser on the local network
+- Navigate to **raspberrypi.local**
+
 ----
 ## Ping Server Internal Logic
 
@@ -272,7 +286,7 @@ To update the PingServer from GitHub:
 
 - PingServer (Swift App)
 - customize IP address for pings (e.g. Xfinity DNS is 75.75.75.75)
-- writes '~/PingServer/www/CurrentStatus.js\' once per second
+- writes '~/PingServer/www/CurrentStatus.js' once per second
 - shows most recent ping round trip time and the minimum, maximum, 
 average and standard deviation of the pings for the last minute.
 - Each time an Outage is cleared, details of the Outage are written to: 
