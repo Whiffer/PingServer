@@ -14,7 +14,7 @@ used to connect to the external WAN.
 It is _not_ intended to monitor the quality, 
 status or availability of a Wi-Fi connection to the router.
 However, it is possible to configure the Pi to use Wi-Fi for its network connection and 
-therefore monitor both the availability the Wi-Fi connection and the external WAN together.
+therefore monitor both the availability of the Wi-Fi connection and the external WAN together.
 
 ----
 ## Prerequisite Hardware
@@ -32,7 +32,7 @@ therefore monitor both the availability the Wi-Fi connection and the external WA
 
 There are two ways to install, configure and administer the Raspberry Pi's hardware and software:
 - Physically attach a dedicated display, keyboard and mouse to the Raspberry Pi (recommended)
-- Remotely connect to the Raspberry Pi via a network attached computer using SSH and VnC or using SSH alone.
+- Remotely connect to the Raspberry Pi via a network attached computer using SSH and VnC or using SSH alone
 
 ##### Local Display/Keyboard/Mouse
 
@@ -48,9 +48,10 @@ If you are planning to install the Raspberry Pi without a physical monitor or ke
 you will need the following:
 - A desktop computer or laptop attached to the same local area network as the Raspberry Pi
 - An open Terminal window on the computer capable of running the **ssh** command.
-- Optionally (recommended), install a VnC client on your computer such as 
-[VnC Viewer](https://www.realvnc.com/en/connect/download/viewer/),
-which available on several platforms and is free for non-commercial use.
+- Optionally (recommended), install a VnC client on your computer providing full remote
+access to the Raspberry Pi desktop. 
+The [VnC Viewer](https://www.realvnc.com/en/connect/download/viewer/) from RealVnC is
+available on several platforms, is free for non-commercial use and has been found to work very reliably with the Raspberry Pi VnC server.
 
 ----
 ### Optional Hardware Components
@@ -60,6 +61,14 @@ which available on several platforms and is free for non-commercial use.
 <img src="https://m.media-amazon.com/images/I/81qS7K8xMXL._AC_SL1500_.jpg" width="25%" height="25%" />
 
 [LED Traffic Lights on Amazon](https://www.amazon.com/Pi-Traffic-Light-Raspberry/dp/B00P8VFA42/)
+
+##### When the optional LED Traffic Lights are installed, the Ping Server states are shown as follows: 
+- LED yellow - Program starting
+- LED yellow & green - Network going up
+- LED green - Network up
+- LED red & yellow - Network going down
+- LED red - Network down
+- LED blinking red - Network not connected
 
 ----
 #### USB Speaker
@@ -83,9 +92,15 @@ which available on several platforms and is free for non-commercial use.
 - Open the **Raspberry Pi Imager** (or equivalent micro SD card writer)
 ```
 > Select Operating System: Raspberry Pi OS (32-bit)
+```
+- After clicking Select Device, but before selecting the specific device, 
+make a note of the full path where the SD Card has been mounted on this computer.
+```
 > Select Device: Choose the appropriate SD Card reader
 > Select Write
 ```
+**Note:** Writing the OS to the SD card can take some time.
+
 When complete, if you are using real console devices, skip ahead to 
 _Final Assembly of the Raspberry Pi Computer_.
 
@@ -97,7 +112,7 @@ Open a terminal window on the computer with the SD card writer and perform the b
 You may need to remove and reinsert the SD card reader/writer 
 for the newly created SD card volume to be recognized by the computer.
 ```
-> cd /Volumes/boot
+> cd <Directory where the SD Card in mounted on this computer>
 > touch ssh
 ```
 **Note:** the **ssh** file only needs to exist. An empty file is OK, 
@@ -142,7 +157,7 @@ change the default password for the default user **pi**.
 if you are planning to connect to the graphical desktop using VnC Viewer.
 ```
 > select Display Options
-> select Resolution
+> select D1 Resolution
 > select DMT Mode 82 1920x1080 60Hz 16:9
 > select OK
 > select finish
@@ -179,8 +194,8 @@ display, keyboard and mouse.
 - Now change the password for the default 'pi' account, then click **Next**
 - Select the checkbox if the desktop does not fill the entire screen, then click **Next**
 - If you want to use Wi-Fi, select your network, otherwise click **Skip**
-- On the **Update Software** panel, click **Next** (this may take a while)
-- When finished and it will notify you that the system is up to date. Click **OK**.
+- On the **Update Software** panel, click **Next** (**Note:** this may take some time)
+- When finished it will notify you that the system is up to date. Click **OK**.
 - At this point, the Initial Raspberry Pi Setup is essentially complete. 
 - If you are currently **running headless**, click **Restart**. When the reboot is complete, 
 restart the VNC Viewer and then skip down to _Software Installation Steps_.
@@ -208,12 +223,16 @@ This step confirms that all of the currently install software is up to date. Thi
 ```
 > sudo apt update
 ```
+If there are no packages that need upgrading, skip ahead to _Install Swift Compiler._
+```
+> sudo apt upgrade
+```
 ##### Install Swift Compiler
 The following commands installs the Swift Tools, Compiler and Library for Raspberry Pi:
 ```
 > curl -s https://packagecloud.io/install/repositories/swift-arm/release/script.deb.sh | sudo bash
 > sudo apt-get install swift5
-> (need to reply 'y' once)
+> (need to reply 'y' once, just hit return at the prompt)
 ```
 ##### Install the Ping Server
 Download the public Ping Server Project from GitHub
@@ -234,7 +253,7 @@ Configure the PingServer to autostart at boot time, then compile the Swift proje
 After opening a terminal window, follow these steps to install and configure the HTTP server:
 ```
 > sudo apt install nginx
-> (need to reply 'y' once)
+> (need to reply 'y' once, just hit return at the prompt)
 > sudo cp /home/pi/PingServer/nginx/nginx.conf /etc/nginx/
 > sudo /etc/init.d/nginx reload
 > sudo /etc/init.d/nginx start
@@ -293,13 +312,6 @@ average and standard deviation of the pings for the last minute.
 '~/PingServer/Outages/Outage_YYYY_MM_DD_HH_MM_SS.json'
 - '~/PingServer/www/OutageHistory.js' is replaced after each outage is cleared
 
-##### Ping Server States
-- Program starting (LED yellow)
-- Network going up (LED yellow & green)
-- Network up (LED green)
-- Network going down (LED red & yellow)
-- Network down (LED red)
-- Network not connected (LED blinking red)
 ### Web Server
 ```
 > sudo service nginx stop
