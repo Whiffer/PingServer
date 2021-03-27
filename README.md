@@ -244,6 +244,7 @@ Download the public Ping Server Project from GitHub
 Configure the PingServer to autostart at boot time, then compile the Swift project.
 ```
 > cd PingServer
+> mkdir Outages
 > cp -r autostart ~/.config/
 > swift build
 ```
@@ -267,7 +268,7 @@ After opening a terminal window, follow these steps to install and configure the
 ##### Remote Test 
 
 - Click the **Open Applications Menu** button at the top left of the screen
-- Click **Shutdown** then select **Reboot**
+- Click **Logout** then select **Reboot**
 - Open a Web Browser on a computer on the same LAN and 
 then navigate to **raspberrypi.local**.
 
