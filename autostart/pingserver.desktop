@@ -1,4 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=PingServer
-Exec=/home/pi/PingServer/.build/armv6-unknown-linux-gnueabihf/debug/PingServer

@@ -241,12 +241,18 @@ Download the public Ping Server Project from GitHub
 ```
 ##### Configure and Build the Ping Server
 
-Configure the PingServer to autostart at boot time, then compile the Swift project.
+Compile the Swift project.
 ```
 > cd PingServer
-> mkdir Outages
-> cp -r autostart ~/.config/
 > swift build
+```
+
+Start the PingServer and configure it to autostart at boot time.
+```
+> mkdir Outages
+> sudo cp autostart/pingserver.service /etc/systemd/system/pingserver.service
+> sudo systemctl start pingserver.service
+> sudo systemctl enable myscript.service
 ```
 
 ##### Install and Configure HTTP Server
@@ -276,11 +282,9 @@ then navigate to **raspberrypi.local**.
 ## Operating the Ping Server
 
 ##### Stoping the Ping Server
-To stop the Ping Server, open a terminal, find the number for the 
-PingServer process, then issue a kill command for that process.
+To manually stop the PingServer, open a terminal and use this command.
 ```
-> ps -ea | grep PingServer
-> kill nnn  (where nnn is the process number shown by the grep command)
+> sudo systemctl stop pingserver.service
 ```
 ##### Updating the Ping Server
 To update the PingServer from GitHub:
@@ -290,10 +294,9 @@ To update the PingServer from GitHub:
 > swift run
 ```
 ##### Starting the Ping Server
-These are the steps to get started:
+To manually start the PingServer, open a terminal and use this command.
 ```
-> cd PingServer
-> swift run
+> sudo systemctl start pingserver.service
 ```
 ##### Viewing the Ping Server Status
 - Open a web browser on the local network

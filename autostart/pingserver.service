@@ -1,0 +1,14 @@
+[Unit]
+Description=Ping Server
+After=network.target
+
+[Service]
+ExecStart=/home/pi/PingServer/.build/armv6-unknown-linux-gnueabihf/debug/PingServer
+WorkingDirectory=/home/pi/PingServer/.build/armv6-unknown-linux-gnueabihf/debug
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
