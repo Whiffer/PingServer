@@ -252,7 +252,7 @@ Start the PingServer and configure it to autostart at boot time.
 > mkdir Outages
 > sudo cp autostart/pingserver.service /etc/systemd/system/pingserver.service
 > sudo systemctl start pingserver.service
-> sudo systemctl enable myscript.service
+> sudo systemctl enable pingserver.service
 ```
 
 ##### Install and Configure HTTP Server
