@@ -207,7 +207,7 @@ and select **Raspberry Pi Configuration**.
 select **Enable** for both VNC and for SSH. This will allow you to run headless later after the 
 installation is complete.
 - Click **OK**
-- Click the **Raspberry Pi** button again, select **Logout**, and then click **Reboot**.
+- Click the **Raspberry Pi** button again, select **Shutdown**, and then click **Reboot**.
 ----
 ## Software Installation Steps
 After the reboot is complete, all of the remaining installation steps are performed in a terminal window, 
