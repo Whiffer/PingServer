@@ -230,8 +230,8 @@ If there are no packages that need upgrading, skip ahead to _Install Swift Compi
 ##### Install Swift Compiler
 The following commands installs the Swift Tools, Compiler and Library for Raspberry Pi:
 ```
-> curl -s https://packagecloud.io/install/repositories/swift-arm/release/script.deb.sh | sudo bash
-> sudo apt-get install swift5
+> curl -s https://archive.swiftlang.xyz/install.sh | sudo bash
+> sudo apt install swiftlang
 > (need to reply 'y' once, just hit return at the prompt)
 ```
 ##### Install the Ping Server
